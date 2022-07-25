@@ -9,7 +9,170 @@
 <body onload = "animation()">
     <p>FPS数:<span id = "fps"></span></p>
 <span id="view_clock"></span>
+<script type="text/javascript">
+var  upSpeed=15;  //メッセージのスライド速度
+var  delay =3000; // 次のメッセージに切り替わるまでの静止時間
+var  tickerH=40;  // 表示ボックスの高さ
+ window.onload =function divScroller(){
+  scroller = document.getElementById("ticKer"); // div 表示ボックス
+  scroller.style.height= tickerH+"px"; // 表示ボックスの高さ
+  scroller.style.lineHeight= tickerH+"px"; // 行の高さ  
+    slide = document.getElementById("ulArea"); // スライドさせる ul要素
+    slide.style.position = "absolute"; // 絶対配置
+    slide.style.top = tickerH+"px" ;  // slide のtop(上辺)の位置
+  innScroll(tickerH, upSpeed, delay)
+      }
+  function innScroll(tickerH, upSpeed, delay){
+   msec = upSpeed; // スクロール時間
+   numTop = parseInt(slide.style.top) // 数値文字列を整数に変換
+　　if (numTop > -tickerH){ // top位置が -30にならない間は
+　　　slide.style.top = (numTop-1)+"px"; // top位置を -1px 上へ
+  　　　}
+　　else{ slide.style.top = 0+"px"; 
+               cngLi(); // 次のメッセージと交代
+  　　　　　}
+   if(numTop==0){msec = delay;// 静止時間 現在のメッセージを待機
+     }
+    setTimeout("innScroll("+ tickerH +","+ upSpeed +"," + delay +")", msec);
+    }
+function cngLi(){ // メッセージの移動
+   base= document.getElementById("ulArea");
+    liList = base.getElementsByTagName("li");// 与えられたタグ名を持つ要素のリスト
+     elm = liList[0];// 最上部の "li"要素
+    base.appendChild(elm); // elm を子ノードとして末尾に移動する。
+      }
+	</script>
+	<script type="text/javascript">
+const accordions = document.querySelectorAll('.list-item');
 
+accordions.forEach(accordion => {
+  accordion.addEventListener('click', () => {
+    const content = accordion.querySelector('.list-content');
+
+    content.classList.toggle('active');
+
+    if(content.classList.contains('active')) {
+      content.style.height = content.scrollHeight + 'px';
+    } else {
+      content.style.height = '0px';
+    }
+
+  });
+});
+	</script>
+<style>
+#wrapper {
+  display: block;
+  width:100%;
+  text-align:center;
+  margin:30px auto;
+}
+#title {
+  font-size:20px;
+  font-weight: 700;
+  margin:0 0 20px 0;
+}
+
+#ticKer{
+  border-radius: 20px; /* 角丸ボーダー */
+  width: 500px;  /* 横幅 */
+  background:#D8D8D8; /* 背景色 */
+  position: relative; /* 相対配置（相対位置）*/
+  overflow: hidden; /* はみ出た部分を非表示 */
+  margin: 0 auto;
+}
+#ticKer ul{
+  padding: 0; /* 内側余白*/
+  margin: 0 auto; 
+}
+#ticKer li{
+  list-style-type: none; /* リストマーク なし */
+  line-height:2.5em;
+  padding-left: 25px;
+  color: #000;
+  font-weight: 400;
+  font-size: 16px;
+  text-align:left;
+}
+
+
+</style>
+<style>
+ol, ul { list-style: none;}
+
+/* 以下、アコーディオンの設定 */
+.list {
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+  padding:0;
+  
+}
+
+.list .list-item .list-tit {
+  padding: 0.5rem 0.5rem 0.5rem 1rem ;
+  background-color: #D8D8D8;
+  margin:0;
+  border-radius: 5px;
+}
+
+.list .list-item .list-content {
+  line-height: 1.5;
+  height: 0rem;
+  overflow: hidden;
+  transition: height 0.5s ease 0s, padding 0.5s ease 0s;
+  margin:0 0 10px 0;
+  background-color:;
+}
+
+.list .list-item .list-content .list-txt {
+  padding: 1rem;
+}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+<div id="title">進行度</div>
+<div  id="ticKer">
+  <ul id="ulArea"> <!-- ul要素 箇条書き -->
+    <li>15.01％</li>
+    <li>製作中です。</li>
+    <li>完成するまで、</li>
+    <li>しばらくお待ちください。</li>
+  </ul>
+</div>
+</div>
+
+<ul class="list">
+  <!--list-item 1つ目 -->
+  <li class="list-item">
+    <h3 class="list-tit">sample1</h3>
+    <div class="list-content">
+      <p class="list-txt">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quia sunt accusantium repellat minus optio amet, eligendi aliquid dolore ex voluptatibus deserunt consequatur sint ducimus sequi obcaecati cum nemo quisquam?
+      </p>
+    </div>
+  </li>
+  <!-- list-item 2つ目 -->
+  <li class="list-item">
+    <h3 class="list-tit">sample2</h3>
+    <div class="list-content">
+      <p class="list-txt">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quia sunt accusantium repellat minus optio amet, eligendi aliquid dolore ex voluptatibus deserunt consequatur sint ducimus sequi obcaecati cum nemo quisquam
+      </p>
+    </div>
+  </li>
+  <!-- list-item 3つ目 -->
+  <li class="list-item">
+    <h3 class="list-tit">sample3</h3>
+    <div class="list-content">
+      <p class="list-txt">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quia sunt accusantium repellat minus optio amet, eligendi aliquid dolore ex voluptatibus deserunt consequatur sint ducimus sequi obcaecati cum nemo quisquam
+      </p>
+    </div>
+  </li>
+</ul>
 
 <script type="text/javascript">
 	function animation(){
