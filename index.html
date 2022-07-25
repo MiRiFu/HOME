@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   <script src="../state.js"></script>
   <title>HOME</title>
-<div id="particles">
+
+</head>
+<body onload = "animation()">
+    <p>FPS数:<span id = "fps"></span></p>
+<span id="view_clock"></span>
+	<div id="particles">
   <div class="overlay"></div>
   <div id="intro">
     <h1>3D Animated<br>background</h1>
     <p>Background particle systems</p>
   </div>
 </div>
-</head>
-<body onload = "animation()">
-    <p>FPS数:<span id = "fps"></span></p>
-<span id="view_clock"></span>
 
 <script type="text/javascript">
 	function animation(){
